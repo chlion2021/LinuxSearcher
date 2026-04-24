@@ -1,0 +1,524 @@
+object Form1: TForm1
+  Left = 310
+  Height = 761
+  Top = 125
+  Width = 1336
+  Caption = 'Linux文件搜索工具V1.1   作者:陈宏宇  2026.01 微信:chenhongyusnow        设计语言：Pascal                                                              赠人玫瑰 手留余香'
+  ClientHeight = 761
+  ClientWidth = 1336
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '3.6.0.0'
+  object pnlMain: TPanel
+    Left = 10
+    Height = 880
+    Top = 10
+    Width = 1316
+    BevelOuter = bvNone
+    ClientHeight = 880
+    ClientWidth = 1316
+    ParentBackground = False
+    TabOrder = 0
+    object gbDiskSelection: TGroupBox
+      Left = 0
+      Height = 65
+      Top = 0
+      Width = 1316
+      Align = alTop
+      Caption = '硬盘分区选择'
+      ClientHeight = 46
+      ClientWidth = 1312
+      ParentBackground = False
+      TabOrder = 0
+      object pnlDiskButtons: TPanel
+        Left = 8
+        Height = 25
+        Top = 16
+        Width = 1300
+        BevelOuter = bvNone
+        ParentBackground = False
+        TabOrder = 0
+      end
+      object lblDiskStats: TLabel
+        Left = 8
+        Height = 17
+        Top = 45
+        Width = 76
+        Caption = '检测到 0 个分区'
+      end
+    end
+    object pnlSearchPath: TPanel
+      Left = 0
+      Height = 30
+      Top = 65
+      Width = 1316
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 30
+      ClientWidth = 1316
+      ParentBackground = False
+      TabOrder = 1
+      object lblSearchPath: TLabel
+        Left = 8
+        Height = 17
+        Top = 7
+        Width = 47
+        Caption = '搜索路径:'
+      end
+      object edtSearchPath: TEdit
+        Left = 70
+        Height = 27
+        Top = 4
+        Width = 400
+        TabOrder = 0
+        Text = '/'
+      end
+      object btnBrowsePath: TButton
+        Left = 476
+        Height = 25
+        Top = 2
+        Width = 75
+        Caption = '浏览...'
+        TabOrder = 1
+        OnClick = btnBrowsePathClick
+      end
+    end
+    object pnlSearchParams: TPanel
+      Left = 0
+      Height = 40
+      Top = 95
+      Width = 1316
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 40
+      ClientWidth = 1316
+      ParentBackground = False
+      TabOrder = 2
+      object lblSearchMode: TLabel
+        Left = 8
+        Height = 17
+        Top = 11
+        Width = 47
+        Caption = '搜索模式:'
+      end
+      object pnlModeButtons: TPanel
+        Left = 70
+        Height = 25
+        Top = 5
+        Width = 400
+        BevelOuter = bvNone
+        ClientHeight = 25
+        ClientWidth = 400
+        ParentBackground = False
+        TabOrder = 0
+        object rbName: TRadioButton
+          Left = 0
+          Height = 21
+          Top = 4
+          Width = 56
+          Caption = '文件名'
+          Checked = True
+          TabOrder = 0
+          TabStop = True
+          OnClick = rbNameClick
+        end
+        object rbContent: TRadioButton
+          Left = 56
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '内容'
+          TabOrder = 1
+          OnClick = rbContentClick
+        end
+        object rbSize: TRadioButton
+          Left = 112
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '大小'
+          TabOrder = 2
+          OnClick = rbSizeClick
+        end
+        object rbTime: TRadioButton
+          Left = 168
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '时间'
+          TabOrder = 3
+          OnClick = rbTimeClick
+        end
+        object rbExtension: TRadioButton
+          Left = 224
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '类型'
+          TabOrder = 4
+          OnClick = rbExtensionClick
+        end
+      end
+      object pnlParamContainer: TPanel
+        Left = 480
+        Height = 25
+        Top = 5
+        Width = 450
+        BevelOuter = bvNone
+        ParentBackground = False
+        TabOrder = 1
+      end
+      object pnlOptions: TPanel
+        Left = 940
+        Height = 25
+        Top = 5
+        Width = 300
+        BevelOuter = bvNone
+        ClientHeight = 25
+        ClientWidth = 300
+        ParentBackground = False
+        TabOrder = 2
+        object chkRecursive: TCheckBox
+          Left = 0
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '递归'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+        end
+        object chkCaseSensitive: TCheckBox
+          Left = 55
+          Height = 21
+          Top = 4
+          Width = 78
+          Caption = '区分大小写'
+          TabOrder = 1
+        end
+        object chkRegex: TCheckBox
+          Left = 135
+          Height = 21
+          Top = 4
+          Width = 45
+          Caption = '正则'
+          TabOrder = 2
+        end
+      end
+    end
+    object pnlControls: TPanel
+      Left = 0
+      Height = 50
+      Top = 135
+      Width = 1316
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 50
+      ClientWidth = 1316
+      ParentBackground = False
+      TabOrder = 3
+      object gbSearchControl: TGroupBox
+        Left = 0
+        Height = 50
+        Top = 0
+        Width = 380
+        Align = alLeft
+        Caption = '搜索控制'
+        ClientHeight = 31
+        ClientWidth = 376
+        ParentBackground = False
+        TabOrder = 0
+        object btnStartSearch: TButton
+          Left = 8
+          Height = 25
+          Top = 0
+          Width = 80
+          Caption = '开始搜索'
+          TabOrder = 0
+          OnClick = btnStartSearchClick
+        end
+        object btnStopSearch: TButton
+          Left = 96
+          Height = 25
+          Top = 0
+          Width = 80
+          Caption = '停止搜索'
+          Enabled = False
+          TabOrder = 1
+          OnClick = btnStopSearchClick
+        end
+        object btnClearResults: TButton
+          Left = 184
+          Height = 25
+          Top = 0
+          Width = 80
+          Caption = '清除结果'
+          TabOrder = 2
+          OnClick = btnClearResultsClick
+        end
+        object btnExportResults: TButton
+          Left = 266
+          Height = 25
+          Top = 0
+          Width = 80
+          Caption = '导出结果'
+          TabOrder = 3
+          OnClick = btnExportResultsClick
+        end
+      end
+      object gbFileOperations: TGroupBox
+        Left = 380
+        Height = 50
+        Top = 0
+        Width = 700
+        Align = alLeft
+        Caption = '文件操作'
+        ClientHeight = 31
+        ClientWidth = 696
+        ParentBackground = False
+        TabOrder = 1
+        object lblTarget: TLabel
+          Left = 8
+          Height = 17
+          Top = 0
+          Width = 25
+          Caption = '目标:'
+        end
+        object edtTargetFolder: TEdit
+          Left = 48
+          Height = 27
+          Top = 0
+          Width = 172
+          TabOrder = 0
+        end
+        object btnBrowseTarget: TButton
+          Left = 232
+          Height = 25
+          Top = 0
+          Width = 25
+          Caption = '...'
+          TabOrder = 1
+          OnClick = btnBrowseTargetClick
+        end
+        object btnCopySelected: TButton
+          Left = 264
+          Height = 25
+          Top = 0
+          Width = 65
+          Caption = '复制选中'
+          TabOrder = 2
+          OnClick = btnCopySelectedClick
+        end
+        object btnMoveSelected: TButton
+          Left = 336
+          Height = 25
+          Top = 0
+          Width = 65
+          Caption = '剪切选中'
+          TabOrder = 3
+          OnClick = btnMoveSelectedClick
+        end
+        object btnCopyAll: TButton
+          Left = 416
+          Height = 25
+          Top = 0
+          Width = 65
+          Caption = '复制全部'
+          TabOrder = 4
+          OnClick = btnCopyAllClick
+        end
+        object btnMoveAll: TButton
+          Left = 496
+          Height = 25
+          Top = 0
+          Width = 65
+          Caption = '剪切全部'
+          TabOrder = 5
+          OnClick = btnMoveAllClick
+        end
+        object lblExists: TLabel
+          Left = 576
+          Height = 17
+          Top = 2
+          Width = 36
+          Caption = '存在时:'
+        end
+        object cbFileExists: TComboBox
+          Left = 631
+          Height = 25
+          Top = 0
+          Width = 60
+          ItemHeight = 0
+          ItemIndex = 0
+          Items.Strings = (
+            '跳过'
+            '覆盖'
+            '重命名'
+          )
+          Style = csDropDownList
+          TabOrder = 6
+          Text = '跳过'
+        end
+      end
+      object gbSelection: TGroupBox
+        Left = 1080
+        Height = 50
+        Top = 0
+        Width = 236
+        Align = alClient
+        Caption = '选择'
+        ClientHeight = 31
+        ClientWidth = 232
+        ParentBackground = False
+        TabOrder = 2
+        object btnSelectAll: TButton
+          Left = 32
+          Height = 25
+          Top = 0
+          Width = 50
+          Caption = '全选'
+          TabOrder = 0
+          OnClick = btnSelectAllClick
+        end
+        object btnInvertSelection: TButton
+          Left = 104
+          Height = 25
+          Top = 0
+          Width = 50
+          Caption = '反选'
+          TabOrder = 1
+          OnClick = btnInvertSelectionClick
+        end
+      end
+    end
+    object lblResultCount: TLabel
+      Left = 10
+      Height = 17
+      Top = 195
+      Width = 93
+      Caption = '搜索结果: 0 个文件'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object pnlResults: TPanel
+      Left = 0
+      Height = 400
+      Top = 185
+      Width = 1316
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 400
+      ClientWidth = 1316
+      ParentBackground = False
+      TabOrder = 4
+      object lvResults: TListView
+        Left = 0
+        Height = 400
+        Top = 0
+        Width = 1316
+        Align = alClient
+        Checkboxes = True
+        Columns = <        
+          item
+            Caption = '请点击此栏选择'
+            Width = 100
+          end        
+          item
+            Caption = '路径'
+            Width = 400
+          end        
+          item
+            Caption = '文件名'
+            Width = 150
+          end        
+          item
+            Caption = '大小'
+            Width = 100
+          end        
+          item
+            Caption = '修改时间'
+            Width = 551
+          end>
+        GridLines = True
+        ReadOnly = True
+        RowSelect = True
+        TabOrder = 0
+        ViewStyle = vsReport
+        OnClick = lvResultsClick
+        OnDblClick = lvResultsDblClick
+      end
+    end
+    object gbOpsStatus: TGroupBox
+      Left = 0
+      Height = 100
+      Top = 585
+      Width = 1316
+      Align = alTop
+      Caption = '操作状态'
+      ClientHeight = 81
+      ClientWidth = 1312
+      ParentBackground = False
+      TabOrder = 5
+      object mmOpsStatus: TMemo
+        Left = 0
+        Height = 81
+        Top = 0
+        Width = 1312
+        Align = alClient
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        ParentFont = False
+        ReadOnly = True
+        ScrollBars = ssBoth
+        TabOrder = 0
+      end
+    end
+    object pbSearch: TProgressBar
+      Left = 0
+      Height = 17
+      Top = 685
+      Width = 1316
+      Align = alTop
+      Smooth = True
+      Step = 1
+      TabOrder = 6
+    end
+    object pbFileOps: TProgressBar
+      Left = 0
+      Height = 17
+      Top = 702
+      Width = 1316
+      Align = alTop
+      Smooth = True
+      TabOrder = 7
+    end
+    object pnlStatusBar: TPanel
+      Left = 0
+      Height = 21
+      Top = 719
+      Width = 1316
+      Align = alTop
+      BevelOuter = bvLowered
+      ClientHeight = 21
+      ClientWidth = 1316
+      ParentBackground = False
+      TabOrder = 8
+      object lblStatus: TLabel
+        Left = 4
+        Height = 17
+        Top = 4
+        Width = 22
+        Caption = '就绪'
+      end
+    end
+  end
+end
